@@ -12,6 +12,8 @@ import AddJob from "../pages/employeeDashboard/AddJob";
 import EmployerDashboard from "../pages/employeeDashboard/EmployerDashboard";
 import CandidateDashboard from "../pages/candidateDashboard/CandidateDashboard";
 import AppliedJobs from "../pages/candidateDashboard/AppliedJobs";
+import Candidates from "../pages/employeeDashboard/Candidates";
+import CandidateDetails from "../pages/CandidateDetails";
 
 const routes = createBrowserRouter([
   {
@@ -30,6 +32,10 @@ const routes = createBrowserRouter([
       {
         path: "/job-details/:id",
         element: <JobDetails />,
+      },
+      {
+        path: "/applicant/:id",
+        element: <CandidateDetails />,
       },
       {
         path: "/login",
@@ -69,10 +75,10 @@ const routes = createBrowserRouter([
         path: "add-job",
         element: <AddJob />,
       },
-      // {
-      //   path: "candidate",
-      //   element: <Candidates />,
-      // },
+      {
+        path: "candidates",
+        element: <Candidates />,
+      },
       {
         path: "employer",
         element: <EmployerDashboard />,

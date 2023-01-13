@@ -5,10 +5,14 @@ import { useSelector } from "react-redux";
 const Sidebar = () => {
   const {user:{role}} = useSelector((state)=> state.auth)
 
-  const employerRoutes = [{
-    name:"Add Job",
-    path: "add-job"
-  }]
+  const employerRoutes = [
+    {name:"Add Job",
+    path: "add-job"},
+    {name:"Candidates",
+    path: "candidates"},
+
+  
+]
 
   const candidateRoutes = [{
     name:"Applied Jobs",

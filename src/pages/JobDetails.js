@@ -15,8 +15,9 @@ const JobDetails = () => {
  
  const {data, isLoading, isError} = useGetJobDetailsQuery(id, {pollingInterval: 10000})
   const {user} = useSelector((state)=> state.auth)
+  const userId = user._id
    // question
-  
+   
    
   const { companyName,
     position,
@@ -34,6 +35,8 @@ const JobDetails = () => {
     status,
     applicants,
     _id} = data?.data || {}
+  console.log(applicants?.id)
+  
   const [apply] = useApplyMutation()
   const [askQuestion] = useQuestionMutation()
    const [sendReply] = useQuestionReplyMutation()
@@ -53,11 +56,16 @@ const JobDetails = () => {
   const data = {
     userId : user._id,
     email: user.email,
+    fristName:user.fristName,
+    applicantDetails: user,
     jobId: _id
 
   }
   apply(data)
+  console.log(data)
  }
+
+ 
 
  // question
  const handleQuestion = (data) => {
@@ -134,9 +142,27 @@ const handleOpen = () => {
               <h1 className='text-primary text-lg font-medium mb-3'>Overview</h1>
               <p>{overview}</p>
               <p className='text-primary text-lg font-medium mb-3'>{status}</p>
+              { user.role === "employer" && <div>
+            <h1>Applicants:</h1> 
+              {applicants?.map((applicant, {id})=> <div>
+                <h1>{id}</h1>
+              <button className='btn' onClick={() => navigate(`/applicant/${applicant.id}`)}>
+                  {applicant?.applicantDetails?.firstName}
+                  
+                 </button>
+             </div>) }
+              
+              </div>}
+            
              
             </div>
-            {user.role === "employer" &&  <div>Total applicants:{totalApplicants?.length}</div>}
+            {user.role === "employer" &&  
+            <div>
+              <h2>Total applicants:{totalApplicants?.length}</h2>
+             {/* {applicantDetails?.map(({fristName})=> <div><h2>{fristName}</h2></div>)}  */}
+             <h2>{user.fristName}</h2>
+              </div>}
+              
             <div>
               <h1 className='text-primary text-lg font-medium mb-3'>Skills</h1>
               {/* <ul>
