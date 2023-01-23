@@ -15,7 +15,7 @@ const JobDetails = () => {
  
  const {data, isLoading, isError} = useGetJobDetailsQuery(id, {pollingInterval: 10000})
   const {user} = useSelector((state)=> state.auth)
-  const userId = user._id
+ 
    // question
    
    

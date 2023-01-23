@@ -24,7 +24,7 @@ const CandidateRegistration = () => {
   }, []);
 
   const onSubmit = (data) => {
-    postCandidate({...data, role:"candidate"});
+    postCandidate({...data, role:"candidate", message:[]});
   };
 
   return (

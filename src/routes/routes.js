@@ -14,6 +14,10 @@ import CandidateDashboard from "../pages/candidateDashboard/CandidateDashboard";
 import AppliedJobs from "../pages/candidateDashboard/AppliedJobs";
 import Candidates from "../pages/employeeDashboard/Candidates";
 import CandidateDetails from "../pages/CandidateDetails";
+import Profile from "../pages/Profile";
+import Users from "../pages/Users";
+import ChatRoom from "../pages/Chat/ChatRoom";
+import Messages from "../pages/Chat/Messages";
 
 const routes = createBrowserRouter([
   {
@@ -28,6 +32,18 @@ const routes = createBrowserRouter([
         path: "/jobs",
         element: <Jobs />,
       },
+      {
+        path: "/conversation/:id",
+        element: <ChatRoom />,
+      },
+      {
+        path: "/messagesBox",
+        element: <Messages/>,
+      },
+      {
+        path: "/users",
+        element: <Users />,
+      },
       
       {
         path: "/job-details/:id",
@@ -36,6 +52,15 @@ const routes = createBrowserRouter([
       {
         path: "/applicant/:id",
         element: <CandidateDetails />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
+      },
+    
+      {
+        path: "/profile/:id",
+        element: <Profile />,
       },
       {
         path: "/login",

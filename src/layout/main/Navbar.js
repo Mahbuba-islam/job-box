@@ -3,14 +3,15 @@ import { signOut } from "firebase/auth";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { logout } from "../../features/auth/authSlice";
 import auth from "../../firebase/firebase.config";
 
 const Navbar = () => {
   const dispatch = useDispatch()
   const { pathname } = useLocation();
-  const {user:{email, role}} = useSelector((state)=> state.auth)
+  const navigate = useNavigate()
+  const {user:{email, role, _id}} = useSelector((state)=> state.auth)
   const handleSingnOut = () => {
     signOut(auth).then(()=>{
       dispatch(logout())
@@ -31,9 +32,14 @@ const Navbar = () => {
             Jobs
           </Link>
         </li>
-
+       
         {
-          email? (<button onClick={handleSingnOut} className="hover text-primary transition-all">logout</button>)
+          email? (
+          <div>
+            <button onClick={handleSingnOut} className="hover text-primary transition-all mx-3">logout</button>
+            <button onClick={() => navigate(`/profile/${_id}`)} className="hover text-white px-3 py-1 rounded-full transition-all mx-3 uppercase bg-primary">{email.slice(0,1)}</button>
+          </div>
+          )
           :
           (<li>
           <Link
@@ -44,7 +50,10 @@ const Navbar = () => {
           </Link>
         </li>)
         }
-        {
+
+
+
+       {
           email && role &&
           <li>
           <Link className='hover:text-primary' to='/dashboard'>
